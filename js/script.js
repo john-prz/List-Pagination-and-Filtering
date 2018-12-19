@@ -10,13 +10,13 @@ const studentsPerPage = 10;
 /***********************Global Global Decorations END***********************/
 
 /***********************Functions START***********************/
-//function to dynamically show or hide students based on current selected page
+//function to dynamically show or hide students based on selected page
 const showPage = (pageLink) => {
   const pageNumber = (parseInt(pageLink.textContent));
   //calculate index of the first student on page
-  let firstStudentIndex  = (pageNumber === 1) ? 0 : (pageNumber - 1) * studentsPerPage;
+  const firstStudentIndex  = (pageNumber === 1) ? 0 : (pageNumber - 1) * studentsPerPage;
   //calculate index of the last student on page
-  let lastStudentIndex = firstStudentIndex + studentsPerPage - 1;
+  const lastStudentIndex = firstStudentIndex + studentsPerPage - 1;
 
   for(let i = 0; i < students.length; i ++) {
     //add or remove the hide class based on index of students arr item
@@ -31,7 +31,7 @@ const showPage = (pageLink) => {
 //function to create page links
 const createPageLinks = (ul) => {
   let numOfPages = Math.ceil(students.length/studentsPerPage);
-  //declare an array that will store a block referance to all page links
+  //declare an array that will store a referance to all page links
   const pageLinksArr = [];
   //loop based on numOfPages to create page links
   for(let i = 0; i < numOfPages; i ++) {
@@ -48,16 +48,16 @@ const createPageLinks = (ul) => {
     a.href = "#";
     a.textContent = i + 1;
 
-    //event listener for page links
+    //add event listener on page links
     a.addEventListener('click', (event) => {
       const pageLink = event.target
       showPage(pageLink);
 
-      //Remove class of active from all page links in linkArr
+      //Remove class of .active from all page links in linkArr
       for(let i = 0; i < pageLinksArr.length; i++){
         pageLinksArr[i].className = "";
       }
-      //Assign clicked click a class of .active
+      //Assign clicked link a class of .active
       pageLink.className = "active";
     });
   }
