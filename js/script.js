@@ -5,11 +5,26 @@ FSJS project 2 - List Filter and Pagination
 
 /***********************Global Decorations START ***********************/
 const divPage = document.querySelector('.page');
+const divPageHeader = document.querySelector('.page-header');
 const students = document.querySelectorAll('.student-item');
 const studentsPerPage = 10;
 /***********************Global Global Decorations END***********************/
 
 /***********************Functions START***********************/
+//function to append search bar to divPageHeader
+const appendSearchBar = () => {
+  const div = document.createElement('div');
+  const input = document.createElement('input');
+  const button = document.createElement('button');
+
+  divPageHeader.appendChild(div);
+  div.appendChild(input);
+  div.appendChild(button);
+
+  div.className = "student-search";
+  input.placeholder = "Search for students...";
+  button.textContent = "Search";
+}
 //function to dynamically show or hide students based on selected page
 const showPage = (pageLink) => {
   const pageNumber = (parseInt(pageLink.textContent));
@@ -76,6 +91,8 @@ const appendPageLinks = () => {
 }
 //function to excute the program
 const execute = () => {
+  //create and append search bar
+  appendSearchBar();
   //buid Pagination
   appendPageLinks();
   //select first page
